@@ -25,7 +25,7 @@ app.use(
   cors({
 
     origin: [
-    "https://zerodha-dashboard-bsmvs8m5g-tasneemfatma012s-projects.vercel.app/",
+    "https://zerodha-dashboard-bsmvs8m5g-tasneemfatma012s-projects.vercel.app",
     "http://localhost:3000",
     "http://localhost:5173",
     ],
