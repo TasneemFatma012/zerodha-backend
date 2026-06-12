@@ -12,9 +12,13 @@ const { CommodityModel } = require("./model/CommodityModel");
 const KycModel = require("./model/KycModel");
 const { UserModel } = require("./model/UserModel");
 const Market = require("./model/MarketModel");
+
 const { validatePAN } = require("./utils/validators");
 
 const userRoutes = require("./routes/user");
+const appsRoute = require("./routes/apps");
+
+
 
 const PORT = process.env.PORT || 5000; 
 const url = process.env.MONGO_URL;
@@ -36,11 +40,9 @@ app.use(
 app.use(express.json());
 
 app.use("/users", userRoutes);
+app.use("/apps", appsRoute);
 
 
-app.get('/',async(req,res)=>{
-  res.send("welcome to my home");
-});
 
 // Holding data fetch 
 
@@ -353,6 +355,7 @@ app.post("/users/signup", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 mongoose.connect(url)
