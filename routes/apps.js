@@ -30,5 +30,26 @@ router.post("/", async(req,res)=>{
 
 });
 
+// UPDATE
+router.put("/:id", async(req,res)=>{
 
+    const updatedApp = await App.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            new:true
+        }
+    );
+
+    res.json(updatedApp);
+
+});
+
+router.get("/:id", async(req,res)=>{
+
+    const app = await App.findById(req.params.id);
+
+    res.json(app);
+
+});
 module.exports = router;

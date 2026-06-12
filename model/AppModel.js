@@ -12,6 +12,8 @@ icon:String,
 
 path:String,
 
+features:[String],
+
 active:{
  type:Boolean,
  default:true
