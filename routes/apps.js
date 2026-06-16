@@ -1,55 +1,33 @@
 const express = require("express");
 const router = express.Router();
 
-const App = require("../model/AppModel");
+
+const {
+
+getApps,
+getAppById,
+createApp,
+updateApp,
+deleteApp
+
+}=require("../controllers/appsController");
 
 
 
-router.get("/", async(req,res)=>{
-
-    const apps = await App.find({
-        active:true
-    });
-
-    res.json(apps);
-
-});
+router.get("/",getApps);
 
 
-
-router.post("/", async(req,res)=>{
-
-
-    const newApp = new App(req.body);
-
-    await newApp.save();
+router.get("/:id",getAppById);
 
 
-    res.json(newApp);
+router.post("/",createApp);
 
 
-});
+router.put("/:id",updateApp);
 
-// UPDATE
-router.put("/:id", async(req,res)=>{
 
-    const updatedApp = await App.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        {
-            new:true
-        }
-    );
+router.delete("/:id",deleteApp);
 
-    res.json(updatedApp);
 
-});
 
-router.get("/:id", async(req,res)=>{
-
-    const app = await App.findById(req.params.id);
-
-    res.json(app);
-
-});
 module.exports = router;
