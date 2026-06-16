@@ -4,7 +4,9 @@ const router = express.Router();
 
 
 const {
-signup
+
+signup,
+getProfile
 
 }=require("../controllers/userController");
 
@@ -13,6 +15,13 @@ signup
 router.post(
 "/signup",
 signup
+);
+
+
+
+router.get(
+"/profile",
+getProfile
 );
 
 
