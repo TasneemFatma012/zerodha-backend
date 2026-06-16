@@ -12,7 +12,7 @@ const fundRoute = require("./routes/funds");
 const marketRoute = require("./routes/market");
 const kycRoute = require("./routes/kyc");
 const userRoute = require("./routes/users");
-
+const positionsRoute = require("./routes/positions");
 
 const PORT = process.env.PORT || 5000;
 
@@ -49,7 +49,7 @@ app.use("/kyc",kycRoute);
 
 app.use("/users",userRoute);
 
-
+app.use("/positions", positionsRoute);
 
 
 mongoose.connect(process.env.MONGO_URL)
