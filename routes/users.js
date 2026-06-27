@@ -6,7 +6,8 @@ const router = express.Router();
 const {
 
 signup,
-getProfile
+getProfile,
+login
 
 }=require("../controllers/userController");
 
@@ -17,7 +18,7 @@ router.post(
 signup
 );
 
-
+router.post("/login",login);
 
 router.get(
 "/profile",
