@@ -1,29 +1,38 @@
 const { HoldingModel } = require("../model/HoldingModel");
 
 
-
 exports.getHoldings = async(req,res)=>{
 
-  try{
+try{
 
 
-    let allHoldings = await HoldingModel.find({});
-
-
-    res.json(allHoldings);
+const userId = req.query.userId;
 
 
 
-  }catch(err){
+const allHoldings = await HoldingModel.find({
+
+userId:userId
+
+});
 
 
-    res.status(500).json({
 
-      error:err.message
-
-    });
+res.json(allHoldings);
 
 
-  }
+
+}catch(err){
+
+
+res.status(500).json({
+
+error:err.message
+
+});
+
+
+}
+
 
 };

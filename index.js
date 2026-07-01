@@ -19,13 +19,32 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:3000"
+];
+
 app.use(cors({
- origin:[
- "http://localhost:5173",
- "http://localhost:3000",
- "https://zerodha-dashboard-bsmvs8m5g-tasneemfatma012s-projects.vercel.app"
- ],
- credentials:true
+  origin: function (origin, callback) {
+
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // localhost allow
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Vercel deployments allow
+    if (origin.endsWith(".vercel.app")) {
+      return callback(null, true);
+    }
+
+    callback(new Error("Not allowed by CORS"));
+  },
+  credentials: true
 }));
 
 
